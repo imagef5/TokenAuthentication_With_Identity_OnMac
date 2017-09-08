@@ -23,6 +23,8 @@
 > .Net Core 2.0 Jwt & Cookie Multi 인증 참조 : https://wildermuth.com/2017/08/19/Two-AuthorizationSchemes-in-ASP-NET-Core-2 <br/>
 
 ### 2.1.1 Asp.Net Core Web 프로젝트 생성
+>아래 내용은 .Net Core 1.1 을 기준으로 작성이 되었으며, 2.0에 대한 내용은 위 링크 주소를 참조 바랍니다.<br/>
+
 - 1. 파일 > 새 솔루션 > .Net Core Web App Template 선택 
 ![create web 1](./images/create_web_1.png)
 - 2. 프로젝트 이름 설정후 만들기 
