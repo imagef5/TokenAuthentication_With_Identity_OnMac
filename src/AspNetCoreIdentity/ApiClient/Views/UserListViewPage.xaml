@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:viewmodel="clr-namespace:ApiClient.ViewModels"
+    xmlns:converter="clr-namespace:ApiClient.Converters"
+    xmlns:behavior="clr-namespace:ApiClient.Behaviors"
+    xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+    x:Class="ApiClient.Views.UserListViewPage"
+    Title="ListViewSample">
+	<ContentPage.Resources>
+        <ResourceDictionary>
+          <converter:UserNameConverter x:Key="nameConverter" />
+          <converter:IsFemaleConverter x:Key="isFemaleConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <!--ContentPage.BindingContext>
+        <viewmodel:UserListViewPageViewModel />
+    </ContentPage.BindingContext-->
+    <Grid >
+        <StackLayout Orientation="Vertical">
+            <ListView x:Name="userList" 
+                        ItemsSource="{Binding Users}"
+                        HasUnevenRows="True"
+                        CachingStrategy="RecycleElement"
+                        IsPullToRefreshEnabled="True"
+                        RefreshCommand="{Binding RefleshCommand}"
+                        IsRefreshing="{Binding IsRefreshing,Mode=OneWay}"
+                        >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>  
+                            <Grid Padding="8,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <controls:CircleImage Source="{Binding Picture.Medium}" 
+                                                      VerticalOptions="Center" 
+                                                      WidthRequest="55" 
+                                                      HeightRequest="55"
+                                                      BorderThickness="1"
+                                                      BorderColor="IndianRed">
+                                </controls:CircleImage>
+                                <StackLayout Grid.Column="1"
+                                             Padding="5" 
+                                             Spacing="3"
+                                             VerticalOptions="Center">
+                                    <Label Text="{Binding Name, Converter={StaticResource nameConverter}}" FontSize="Medium" FontAttributes = "Bold"  LineBreakMode="TailTruncation"/>
+                                    <Label Text="{Binding Email}" FontSize="Small" LineBreakMode="TailTruncation" TextColor = "Gray"/>
+                                </StackLayout>
+                            </Grid>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Same" />
+                                <MenuItem Text="Delete"/>
+                                <MenuItem Text="Save" />
+                                <MenuItem Text="Nothing"/>
+                                <MenuItem Text="Hi"/>
+                            </ViewCell.ContextActions>
+                        </ViewCell> 
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Behaviors>
+                            <behavior:EventToCommandBehavior EventName="ItemAppearing" 
+                                                            Command="{Binding DataLoadCommand}" 
+                                                            EventArgsParameterPath="Item"/>
+                            <!--behavior:EventToCommandBehavior EventName="ItemTapped" 
+                                                            Command="{Binding UserSelectedCommand}" 
+                                                            EventArgsParameterPath="Item" /-->
+                    </ListView.Behaviors>
+            </ListView>
+            <ActivityIndicator 
+                IsRunning="{Binding IsBusy}"   
+                IsVisible="{Binding IsBusy}"
+                Color="Gray"
+                VerticalOptions="EndAndExpand"
+                HorizontalOptions="Center"
+                >
+                <ActivityIndicator.WidthRequest>
+                    <OnPlatform 
+                            x:TypeArguments="x:Double" 
+                            iOS="200" 
+                            Android="200"
+                            WinPhone="400" />
+                </ActivityIndicator.WidthRequest>
+            </ActivityIndicator>
+        </StackLayout>
+    </Grid>
+</ContentPage>

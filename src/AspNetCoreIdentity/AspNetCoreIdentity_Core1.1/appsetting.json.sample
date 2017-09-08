@@ -1,0 +1,11 @@
+﻿{
+  "ConnectionStrings" : {
+    "DefaultConnection": "Server=localhost;Database=[DB Name];UId=[DB User ID];pwd=[Password]"
+  },
+  "Logging": {
+    "IncludeScopes": false,
+    "LogLevel": {
+      "Default": "Warning"
+    }
+  }
+}

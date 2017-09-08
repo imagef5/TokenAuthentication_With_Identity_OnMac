@@ -1,0 +1,9 @@
+﻿@model UserManagementAddRoleViewModel
+
+<div asp-validation-summary="All"></div>
+<form method="post" asp-controller="UserManagement" asp-action="AddRole">
+    <input asp-for="User.Id" type="hidden"/>
+	<input asp-for="User.Email"/>
+	<select asp-for="NewRole" asp-items="Model.Roles"></select>
+	<input type="submit" value="Add Role"/>
+</form>
