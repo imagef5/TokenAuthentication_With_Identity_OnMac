@@ -18,9 +18,9 @@
 
 # 2. Asp.Net Core Identity & Token Authentication
 ## 2.1 Asp.Net Core Identity 설치하기
-> 참조 : http://www.blinkingcaret.com/2016/11/30/asp-net-identity-core-from-scratch/
-> .Net Core 1.1 인증 -> 2.0 Migration : https://docs.microsoft.com/en-us/aspnet/core/migration/1x-to-2x/identity-2x
-> .Net Core 2.0 Jwt & Cookie Multi 인증 참조 : https://wildermuth.com/2017/08/19/Two-AuthorizationSchemes-in-ASP-NET-Core-2 
+> 참조 : http://www.blinkingcaret.com/2016/11/30/asp-net-identity-core-from-scratch/ <br/>
+> .Net Core 1.1 인증 -> 2.0 Migration : https://docs.microsoft.com/en-us/aspnet/core/migration/1x-to-2x/identity-2x <br/>
+> .Net Core 2.0 Jwt & Cookie Multi 인증 참조 : https://wildermuth.com/2017/08/19/Two-AuthorizationSchemes-in-ASP-NET-Core-2 <br/>
 
 ### 2.1.1 Asp.Net Core Web 프로젝트 생성
 - 1. 파일 > 새 솔루션 > .Net Core Web App Template 선택 
