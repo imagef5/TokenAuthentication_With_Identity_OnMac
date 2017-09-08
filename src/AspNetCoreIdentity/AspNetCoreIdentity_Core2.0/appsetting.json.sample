@@ -2,6 +2,13 @@
   "ConnectionStrings" : {
     "DefaultConnection": "Server=localhost;Database=[DB Name];UId=[DB User ID];pwd=[Password]"
   },
+  "TokenAuthentication": {
+    "SecretKey": "mysupersecret_secretkey!123",
+    "Issuer": "ExampleIssuer",
+    "Audience": "ExampleAudience",
+    "TokenPath": "/token",
+    "CookieName": "access_token"
+  },
   "Logging": {
     "IncludeScopes": false,
     "LogLevel": {
