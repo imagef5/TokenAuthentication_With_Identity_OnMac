@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -22,24 +23,36 @@ namespace ApiClient.DataServices.Base
 
         public async Task<TResult> GetTokenAsync<TResult>(string uri, string username, string password)
         {
-			var keyValues = new List<KeyValuePair<string, string>>
+            #region Case : Send Form Data
+            var keyValues = new List<KeyValuePair<string, string>>
 			{
 				new KeyValuePair<string, string>("username", username),
 				new KeyValuePair<string, string>("password", password),
 				//new KeyValuePair<string, string>("grant_type", "password")
 			};
 
-			var formContent  = new FormUrlEncodedContent(keyValues);
-			HttpResponseMessage response = new HttpResponseMessage();
+			var sendValue  = new FormUrlEncodedContent(keyValues);
+            #endregion
+
+            #region Case : Send Json Data in Body
+            //var jsonValues = new { username = username, password = password };
+            //string postBody = JsonConvert.SerializeObject(jsonValues);
+            //var sendValue = new StringContent(
+            //                        postBody,
+            //                        Encoding.UTF8,
+            //                        "application/json");
+            #endregion
+
+            HttpResponseMessage response = new HttpResponseMessage();
 			try
 			{
 				using (var httpClient = new HttpClient())
 				{
 					httpClient.Timeout = TimeSpan.FromSeconds(20);
-					var cancelTokenSource = new CancellationTokenSource();
-					var cancelToken = cancelTokenSource.Token;
+					//var cancelTokenSource = new CancellationTokenSource();
+					//var cancelToken = cancelTokenSource.Token;
 
-                    response = await httpClient.PostAsync(uri, formContent, cancelToken).ConfigureAwait(false);
+                    response = await httpClient.PostAsync(uri, sendValue);//, cancelToken);
 				}
 			}
 			catch (Exception ex)
