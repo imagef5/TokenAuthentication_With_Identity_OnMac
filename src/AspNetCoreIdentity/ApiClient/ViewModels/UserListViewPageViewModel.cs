@@ -29,15 +29,17 @@ namespace ApiClient.ViewModels
         public UserListViewPageViewModel(IUserService userService)
 		{
 			_userService = userService;
-            Task.Run(async () =>
-                        {
-                            IsRefreshing = true;
 
-                            await LoadData();
+            LoadData().ContinueWith( (arg) =>
+                {
+                    IsRefreshing = true;
 
-                            IsRefreshing = false;
-                        }
-                    ).Wait();
+                    arg.Wait();
+
+                    IsRefreshing = false;
+
+                }, TaskScheduler.FromCurrentSynchronizationContext()
+            );
 		}
 		#endregion
 
