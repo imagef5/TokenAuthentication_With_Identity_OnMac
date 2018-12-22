@@ -23,15 +23,4 @@ namespace AspNetCoreIdentity2.Data
 			// Add your customizations after calling base.OnModelCreating(builder);
 		}
     }
-
-    //public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
-    //{
-    //    public ApplicationDbContext CreateDbContext(string[] args)
-    //    {
-    //        var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-    //        optionsBuilder.UseSqlServer("Server=localhost;Database=TotoroDB;UId=sa;pwd=skdbsckd1$$;TrustServerCertificate=false;");
-
-    //        return new ApplicationDbContext(optionsBuilder.Options);
-    //    }
-    //}
 }
